@@ -1,6 +1,8 @@
 package org.bernardhugueney.demojpa.model;
 
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +33,21 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "fk_monument", referencedColumnName= "id") })
     private Set<Monument> monuments = new HashSet<Monument>();
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFavoriteMonuments(Set<Monument> favoriteMonuments) {
+        this.favoriteMonuments = favoriteMonuments;
+    }
+
+    @WhereJoinTable(clause = "rating= 'AWESOME'")
+    @ManyToMany
+    @JoinTable(name= "user_monument",
+            joinColumns = {@JoinColumn(name = "fk_user", referencedColumnName= "id" ) },
+            inverseJoinColumns = { @JoinColumn(name = "fk_monument", referencedColumnName= "id") })
+    private Set<Monument> favoriteMonuments = new HashSet<>();
+
     public User() {
     }
     public User(String name) {
@@ -56,4 +73,7 @@ public class User {
         return "User :{ id= "+id+"\n name= "+name+"\n nb momunents"+ monuments.size()+"\n}";
     }
 
+    public Set<Monument> getFavoriteMonuments() {
+        return favoriteMonuments;
+    }
 }

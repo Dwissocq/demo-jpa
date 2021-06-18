@@ -28,6 +28,7 @@ public class Monument {
     @JsonBackReference
     private City city;
 
+    @JsonIgnore
     @ManyToMany(mappedBy="monuments")
     private Set<User> users = new HashSet<User>();
 

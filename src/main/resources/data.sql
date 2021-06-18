@@ -44048,12 +44048,17 @@ INSERT INTO public.measure (id, type, unit, value, measuredate) VALUES
 SELECT setval('measure_id_seq', (SELECT MAX(id) from "measure"));
 
 INSERT INTO monuments (id, name, city) VALUES
-(1,'Pyramides','41412');
+(1,'Pyramides','41412'),
+(2,'Sphinx','41412'),
+(3,'Temple','41412')
+;
 SELECT setval('monuments_id_seq', (SELECT MAX(id) from "monuments"));
 
 INSERT INTO users(id, name) VALUES
 (1, 'Bernard');
 SELECT setval('users_id_seq', (SELECT MAX(id) from "users"));
 
-INSERT INTO user_monument(fk_user, fk_monument) VALUES
-(1,1);
+INSERT INTO user_monument(fk_user, fk_monument, rating) VALUES
+(1,1,'AWESOME'),
+(1,2,'OK'),
+(1,3,'AWESOME');

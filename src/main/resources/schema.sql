@@ -29,5 +29,6 @@ name VARCHAR(100) NOT NULL
 
 CREATE TABLE user_monument (
 fk_user INTEGER references users,
-fk_monument INTEGER references monuments
+fk_monument INTEGER references monuments,
+rating VARCHAR(31)
 );
